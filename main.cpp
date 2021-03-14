@@ -1,71 +1,55 @@
-/*1.Написать программу, проверяющую что сумма двух чисел лежит в пределах от 10 до 20 (включительно), если да – вывести true, в противном случае – false;
-2.Написать программу, проверяющую, является ли некоторое число - натуральным простым. Простое число - это число, которое делится без остатка
-    только на единицу и себя само.
-3.Написать программу, выводящую на экран “истину”, если две целочисленные константы, объявленные в её начале либо равны десяти сами по себе,
-    либо их сумма равна десяти.
-4.Написать программу, которая определяет является ли год високосным. Каждый 4-й год является високосным, кроме каждого 100-го,
-    при этом каждый 400-й – високосный. Для проверки работы вывести результаты работы программы в консоль
-    */
 #include <iostream>
-#include <stdlib.h>
-#include <math.h>
-using namespace std;
-const int d=5,e=5;
-int main()
+#include <fstream>
+int main(int argc, char* argv[])
 {
-    setlocale(LC_ALL, "russian");
-    //First task
-    int a;
-    int b;
-    cout << "Введите первое число =";
-    cin >> a;
-    cout << "Введите первое число =";
-    cin >> b;
-    if (((a+b)>=10) && ((a+b)<=20))
-    {
-        cout << "True!" << endl;
-    }
+    int i=0;
+    std::ofstream fos("example_1.txt");
+    if (!fos.is_open())
+        std::cout << "Р¤Р°Р№Р» РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚!"<<std::endl;
     else
     {
-        cout << "False!" << endl;
-    }
+        fos << "In December 2019, an outbreak of coronavirus disease 2019 (COVID-19) was identified in Wuhan, China. The World Health Organization (WHO) declared this outbreak a significant threat to international health. COVID-19 is highly infectious and can lead to fatal comorbidities especially acute respiratory distress syndrome (ARDS). Thus, fully understanding the characteristics of COVID-19-related ARDS is conducive to early identification and precise treatment.";
 
-    //Second Task
-    int c;
-    cout << "Введите число для проверки =";
-    cin >> c;
-    for (int i=2; i<=sqrt(c); i++)
+    }
+    fos.close();
+    std::ofstream fos1("example_2.txt");
+    if (!fos1.is_open())
+        std::cout << "Р¤Р°Р№Р» РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚!"<<std::endl;
+    else
     {
-        if (c%i==0)
-        {
-            cout << "Число непростое" << endl;
-            break;
+        fos1 << "We aimed to describe the characteristics of COVID-19-related ARDS and to elucidate the differences from ARDS caused by other factors. COVID-19 mainly affected the respiratory system with minor damage to other organs.";
+        fos1.close();
+    }
+   char *ptr1 = (char *) calloc(216, sizeof(char ));
+    if( ptr1 == nullptr)
+       std::cout<< "РќРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё"<< std::endl;
+   else {
+           std::ifstream fin2("example_2.txt");
+        if (!fin2.is_open())
+            std::cout << "Р¤Р°Р№Р» РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚!" << std::endl;
+        else{
+            while (!fin2.eof()) {
+                fin2.get(ptr1[i]);
+                i++;
+            }
+            fin2.close();
+          //  for(i=0; i<216; i++) {
+          //      std::cout << ptr1[i];
+          //  }
         }
     }
-    cout << "Число простое" << endl;
-
-    if (((d+e)==10) || (d==10) || (e==10))
-    {
-        cout << "True!"<< endl;
-    }
+    std::ofstream fos3("example_1.txt", std::ofstream::app);
+    if (!fos3.is_open())
+        std::cout << "Р¤Р°Р№Р» РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚!"<<std::endl;
     else
     {
-        cout << "False!"<< endl;
+        fos3<<std::endl;
+        for(i=0; i<216; i++) {
+            fos3 << ptr1[i];
+        }
     }
+    fos3.close();
 
-
-// Fourth Task
-    int f;
-    cout << "Введите год =";
-    cin >> f;
-    if( (f%4 != 0) || (f%400 != 0) && (f%100 == 0) )
-    {
-        cout << "Не високосный"<< endl;
-    }
-    else
-    {
-        cout << "Високосный"<< endl;
-    }
-
+    system("pause");
     return 0;
 }
