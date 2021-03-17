@@ -1,21 +1,21 @@
-#include <ctime> // в ней функция time
+#include <ctime> // Гў Г­ГҐГ© ГґГіГ­ГЄГ¶ГЁГї time
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
 #define compare(x,y) std::cout<<((x >= 0 && x < y) ? 1 : 0 )<<std::endl;
-#define acces(i,j) *(*(a + i) + j) = rand() % 10;
-#define size(arr) cout << "Number of elements: "<<(sizeof(arr) / sizeof(arr[0]))<<std::endl;
+#define acces(i,j) *(*(a + i) + j) = rand() % 100;
+#define size(arr, type) cout << "Number of elements: "<<(sizeof(arr)/sizeof(type))<<std::endl;
 int main()
 {
 compare(6,5)
 compare(5,6)
     srand(time(NULL));
     int arr[]={1,2,3,4,5,6,7,8,9};
-   size(arr)
-    int n = 0;
+    size(arr, int)
+    int n = 2;
     cout << "Input quantity of columns and rows: ";
     cin >> n;
-    int **a = new int*[n]; // Создаем массив указателей
+    int **a = new int*[n]; // Г‘Г®Г§Г¤Г ГҐГ¬ Г¬Г Г±Г±ГЁГў ГіГЄГ Г§Г ГІГҐГ«ГҐГ©
 
     for (int i = 0; i < n; i++)
     {
@@ -39,12 +39,12 @@ compare(5,6)
 
 system("pause");
 
-    // Удаление массива
+    // Г“Г¤Г Г«ГҐГ­ГЁГҐ Г¬Г Г±Г±ГЁГўГ 
     for (int i = 0; i < n; i++)
     {
-        delete[]a[i]; // Удаляем каждый элемент
+        delete[]a[i]; // Г“Г¤Г Г«ГїГҐГ¬ ГЄГ Г¦Г¤Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ
     }
-    delete[] a; // А потом массив
+    delete[] a; // ГЂ ГЇГ®ГІГ®Г¬ Г¬Г Г±Г±ГЁГў
 
     return 0;
 }
